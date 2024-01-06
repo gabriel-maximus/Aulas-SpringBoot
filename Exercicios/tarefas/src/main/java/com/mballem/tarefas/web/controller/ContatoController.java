@@ -5,10 +5,7 @@ import com.mballem.internal.service.ContatoService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,9 +22,10 @@ public class ContatoController {
     }
 
     // EXERCICIO 2
-    public Object getContatoById() {
-
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<Contato> getContatoById(@PathVariable Long id) {
+        Contato contact = contatoService.getById(id);
+        return ResponseEntity.ok(contact);
     }
 
     // EXERCICIO 3
