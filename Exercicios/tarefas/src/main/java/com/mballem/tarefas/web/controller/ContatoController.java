@@ -36,9 +36,10 @@ public class ContatoController {
     }
 
     // EXERCICIO 4
-    public Object getQuantidadeDeContatos() {
-
-        return null;
+    @GetMapping("/contatos")
+    public ResponseEntity<Integer> getQuantidadeDeContatos() {
+        int size = contatoService.getAll();
+        return ResponseEntity.ok(size);
     }
 
     // EXERCICIO 5
