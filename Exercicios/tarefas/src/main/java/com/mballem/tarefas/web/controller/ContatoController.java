@@ -54,9 +54,10 @@ public class ContatoController {
     }
 
     // EXERCICIO 6
-    public Object updateContatoById() {
-
-        return null;
+    @PatchMapping("/contatos/{id}")
+    public ResponseEntity<Contato> updateContatoById(@PathVariable Long id, @RequestBody Contato contato){
+        Contato contact = contatoService.update(id, contato);
+        return ResponseEntity.ok(contact);
     }
 
     // EXERCICIO 7
