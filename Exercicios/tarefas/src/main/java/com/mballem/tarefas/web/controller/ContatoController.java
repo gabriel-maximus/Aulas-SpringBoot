@@ -61,8 +61,8 @@ public class ContatoController {
     }
 
     // EXERCICIO 7
-    public Object deleteById() {
-
-        return null;
+    @DeleteMapping("/contatos/{id}")
+    public String deleteById(@PathVariable Long id) {
+        return contatoService.delete(id);
     }
 }
