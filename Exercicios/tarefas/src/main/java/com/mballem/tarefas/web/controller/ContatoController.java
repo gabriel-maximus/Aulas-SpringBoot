@@ -2,10 +2,14 @@ package com.mballem.tarefas.web.controller;
 
 import com.mballem.internal.entity.Contato;
 import com.mballem.internal.service.ContatoService;
+import jakarta.websocket.server.PathParam;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -43,9 +47,10 @@ public class ContatoController {
     }
 
     // EXERCICIO 5
-    public Object getContatosByDataNascimento() {
-
-        return null;
+    @GetMapping("/contatos/dataNascimento")
+    public ResponseEntity<List<Contato>> getContatosByDataNascimento(@RequestParam LocalDate dataNascimento) {
+        List<Contato> contatos = contatoService.getByDataNascimento(dataNascimento);
+        return ResponseEntity.ok(contatos);
     }
 
     // EXERCICIO 6
