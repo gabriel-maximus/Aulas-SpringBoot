@@ -22,16 +22,17 @@ public class ContatoController {
     }
 
     // EXERCICIO 2
-    @GetMapping("/{id}")
+    @GetMapping("/contatos/{id}")
     public ResponseEntity<Contato> getContatoById(@PathVariable Long id) {
         Contato contact = contatoService.getById(id);
         return ResponseEntity.ok(contact);
     }
 
     // EXERCICIO 3
-    public Object getContatoByNome() {
-
-        return null;
+    @GetMapping("/contatos/nome/{nome}")
+    public ResponseEntity<Contato> getContatoByNome(@PathVariable String nome) {
+        Contato contact = contatoService.getContatoByNome(nome);
+        return ResponseEntity.ok(contact);
     }
 
     // EXERCICIO 4
