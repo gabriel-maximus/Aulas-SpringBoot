@@ -2,6 +2,9 @@ package com.gabriel.demoparkapi.web.controller;
 
 import com.gabriel.demoparkapi.entity.Usuario;
 import com.gabriel.demoparkapi.service.UsuarioService;
+import com.gabriel.demoparkapi.web.dto.UsuarioCreateDto;
+import com.gabriel.demoparkapi.web.dto.UsuarioResponseDto;
+import com.gabriel.demoparkapi.web.dto.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,9 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> create(@RequestBody Usuario usuario){
-        Usuario user = usuarioService.salvar(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<UsuarioResponseDto> create(@RequestBody UsuarioCreateDto createDto){
+        Usuario user = usuarioService.salvar(UsuarioMapper.toUsuario(createDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UsuarioMapper.toDto(user));
     }
 
     @GetMapping("/{id}")
